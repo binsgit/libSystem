@@ -9,7 +9,7 @@
 #include "IPAddress.hpp"
 #include "EndPoint.hpp"
 #include "../Exception/SocketException.hpp"
-#include "Socket.hpp"
+#include "Sockets/Socket.hpp"
 
 using Reimu::System::SocketException;
 
@@ -43,6 +43,12 @@ namespace Reimu {
 		}
 
 		std::string ToString() { return Address.ToString() + ":" + std::to_string(Port); }
+		static std::string ToString(sockaddr_in *addr) {
+			return IPAddress::ToString(&addr->sin_addr) + ":" + std::to_string(be16toh(addr->sin_port));
+		}
+		static std::string ToString(sockaddr_in6 *addr) {
+			return IPAddress::ToString(&addr->sin6_addr) + ":" + std::to_string(be16toh(addr->sin6_port));
+		}
 
 		bool const operator== (const IPEndPoint &o) const { return Port == o.Port && Address == o.Address; }
 		bool const operator< (const IPEndPoint &o) const {

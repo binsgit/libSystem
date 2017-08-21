@@ -8,7 +8,6 @@
 #include "IPAddress.hpp"
 #include "IPEndPoint.hpp"
 #include "SocketAddress.hpp"
-#include "Socket.hpp"
 
 #include "Sockets/inc.hpp"
 

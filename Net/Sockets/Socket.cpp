@@ -3,3 +3,5 @@
 //
 
 #include "Socket.hpp"
+
+socklen_t sockopt_err_len = sizeof(int);

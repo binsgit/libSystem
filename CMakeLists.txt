@@ -1,14 +1,14 @@
 cmake_minimum_required(VERSION 2.8)
 project(libSystem)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -std=c++14")
 
 set(SOURCE_FILES
     Net/Sockets/AddressFamily.hpp
     Net/SocketAddress.cpp
     Net/SocketAddress.hpp
         Net/Net.cpp
-        Net/Net.hpp System.cpp System.hpp Exception/Exception.cpp Exception/Exception.hpp Exception/SystemException.cpp Exception/SystemException.hpp Exception/OutOfMemoryException.cpp Exception/OutOfMemoryException.hpp Net/IPAddress.cpp Net/IPAddress.hpp Exception/SocketException.cpp Exception/SocketException.hpp Exception/PosixException.cpp Exception/PosixException.hpp Exception/ArgumentNullException.cpp Exception/ArgumentNullException.hpp Exception/ArgumentException.cpp Exception/ArgumentException.hpp Net/IPEndPoint.cpp Net/IPEndPoint.hpp Net/EndPoint.cpp Net/EndPoint.hpp Net/Sockets/TcpListener.cpp Net/Sockets/TcpListener.hpp Net/Sockets/TcpClient.cpp Net/Sockets/TcpClient.hpp Net/Socket.cpp Net/Socket.hpp Exception/inc.hpp Net/Sockets/inc.hpp Net/inc.hpp libSystem.hpp)
+        Net/Net.hpp System.cpp System.hpp Exception/Exception.cpp Exception/Exception.hpp Exception/SystemException.cpp Exception/SystemException.hpp Exception/OutOfMemoryException.cpp Exception/OutOfMemoryException.hpp Net/IPAddress.cpp Net/IPAddress.hpp Exception/SocketException.cpp Exception/SocketException.hpp Exception/PosixException.cpp Exception/PosixException.hpp Exception/ArgumentNullException.cpp Exception/ArgumentNullException.hpp Exception/ArgumentException.cpp Exception/ArgumentException.hpp Net/IPEndPoint.cpp Net/IPEndPoint.hpp Net/EndPoint.cpp Net/EndPoint.hpp Net/Sockets/TcpListener.cpp Net/Sockets/TcpListener.hpp Net/Sockets/TcpClient.cpp Net/Sockets/TcpClient.hpp Net/Sockets/Socket.cpp Net/Sockets/Socket.hpp Exception/inc.hpp Net/Sockets/inc.hpp Net/inc.hpp libSystem.hpp Net/Sockets/Epoll.cpp Net/Sockets/Epoll.hpp Net/Sockets/EpollEvent.cpp Net/Sockets/EpollEvent.hpp)
 
 add_library(Reimu_System SHARED ${SOURCE_FILES})
 add_library(Reimu_System_Static STATIC ${SOURCE_FILES})

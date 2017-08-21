@@ -11,12 +11,14 @@
 namespace Reimu {
     namespace System {
 	namespace Net {
-	    class TcpClient {
-	    public:
-		Reimu::System::Net::Sockets::AddressFamily AddressFamily = Reimu::System::Net::Sockets::AddressFamily::Unspecified;
+	    namespace Sockets {
+		class TcpClient {
+		public:
+		    Reimu::System::Net::Sockets::AddressFamily AddressFamily = Reimu::System::Net::Sockets::AddressFamily::Unspecified;
 
-		TcpClient() {}
-	    };
+		    TcpClient() {}
+		};
+	    }
 	}
     }
 }

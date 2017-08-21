@@ -17,6 +17,8 @@
 #include <stdexcept>
 #include <exception>
 
+#include <unistd.h>
+#include <fcntl.h>
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <sys/un.h>

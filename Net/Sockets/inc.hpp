@@ -7,5 +7,8 @@
 
 #include "TcpClient.hpp"
 #include "TcpListener.hpp"
+#include "Socket.hpp"
+#include "Epoll.hpp"
+#include "EpollEvent.hpp"
 
 #endif // libReimu_System_Net_Sockets_Inc

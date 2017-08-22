@@ -9,17 +9,25 @@
 #include "AddressFamily.hpp"
 #include "../../Exception/inc.hpp"
 #include "EpollEvent.hpp"
+#include <unordered_set>
 #include <sys/epoll.h>
 
 namespace Reimu {
     namespace System {
 	namespace Net {
 	    namespace Sockets {
+
+		class EpollPendingEvent;
+		class EpollEvent;
+
 		class Epoll {
 		public:
 		    int EpollFD = -1;
 		    void *UserData;
-		    int (*Callback)(EpollEvent *event, void *userp) = NULL;
+		    int (*Callback)(EpollPendingEvent *event, void *userp) = NULL;
+		    std::unordered_set<int> WatchingFileDescriptors;
+
+		    bool ExitOnNoFDs = 0;
 
 		    Epoll() {}
 		    Epoll(int maxevents) { Create(maxevents); }
@@ -29,21 +37,7 @@ namespace Reimu {
 				    throw SocketException(errno);
 		    }
 
-		    void Add(EpollEvent ev) {
-			    EpollEvent *newev = new EpollEvent();
-			    newev->operator=(ev);
-
-			    newev->ParentEpollFD = EpollFD;
-
-			    struct epoll_event evbuf;
-			    evbuf.events = ev.Events;
-			    evbuf.data.ptr = newev;
-
-			    if (epoll_ctl(EpollFD, EPOLL_CTL_ADD, ev.Socket.FileDescriptor, &evbuf) < 0)
-				    throw SocketException(errno);
-
-		    }
-
+		    void Add(EpollEvent ev);
 		    void Dispatch(int pev_buf=128, int timeout=-1);
 		};
 	    }

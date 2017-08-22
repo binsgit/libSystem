@@ -9,6 +9,7 @@
 #include "AddressFamily.hpp"
 #include "Socket.hpp"
 #include "../../Exception/inc.hpp"
+#include "Epoll.hpp"
 #include <sys/epoll.h>
 
 using namespace Reimu::System::Net::Sockets;
@@ -17,9 +18,9 @@ namespace Reimu {
     namespace System {
 	namespace Net {
 	    namespace Sockets {
+
 		class EpollEvent {
 		public:
-		    int ParentEpollFD = -1;
 		    uint32_t Events = 0;
 		    Sockets::Socket Socket;
 		    IPEndPoint EndPoint;
@@ -46,7 +47,6 @@ namespace Reimu {
 		    }
 
 		    EpollEvent(const EpollEvent &other) {
-			    ParentEpollFD = other.ParentEpollFD;
 			    Events = other.Events;
 			    Socket = other.Socket;
 			    EndPoint = other.EndPoint;
@@ -55,7 +55,6 @@ namespace Reimu {
 		    }
 
 		    EpollEvent(const EpollEvent &&other) {
-			    ParentEpollFD = other.ParentEpollFD;
 			    Events = other.Events;
 			    Socket = std::move(other.Socket);
 			    EndPoint = std::move(other.EndPoint);
@@ -64,7 +63,6 @@ namespace Reimu {
 		    }
 
 		    EpollEvent& operator= (EpollEvent other) {
-			    ParentEpollFD = other.ParentEpollFD;
 			    Events = other.Events;
 			    Socket = other.Socket;
 			    EndPoint = other.EndPoint;
@@ -73,6 +71,26 @@ namespace Reimu {
 
 			    return *this;
 		    }
+
+		};
+
+		class Epoll;
+
+		class EpollPendingEvent {
+		public:
+		    Epoll *Parent = NULL;
+		    uint32_t Events = 0;
+		    Sockets::Socket *Socket = NULL;
+		    IPEndPoint *EndPoint = NULL;
+		    void *UserData = NULL;
+		    EpollEvent *InternalEvent = NULL;
+
+		    EpollPendingEvent() {}
+		    EpollPendingEvent(epoll_event *eev, Epoll *parent);
+
+		    void Finalize();
+
+		    std::string ToString() { return InternalEvent->ToString(Events); }
 
 		};
 	    }

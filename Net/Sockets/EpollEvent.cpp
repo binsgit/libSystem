@@ -37,3 +37,18 @@ std::string EpollEvent::ToString(int events) {
 
 	return epstrs;
 }
+
+EpollPendingEvent::EpollPendingEvent(epoll_event *eev, Epoll *parent) {
+	Parent = parent;
+	Events = eev->events;
+	InternalEvent = (EpollEvent *)eev->data.ptr;
+	UserData = InternalEvent->UserData;
+	Socket = &InternalEvent->Socket;
+	EndPoint = &InternalEvent->EndPoint;
+}
+
+void EpollPendingEvent::Finalize() {
+	Parent->WatchingFileDescriptors.erase(Socket->FileDescriptor);
+	close(Socket->FileDescriptor);
+	delete InternalEvent;
+}

@@ -14,6 +14,8 @@ using Reimu::System::Net::IPEndPoint;
 using Reimu::System::Net::IPAddress;
 using Reimu::System::SocketException;
 
+using Reimu::System::Convert;
+
 using namespace std;
 
 vector<IPEndPoint> foundeps;
@@ -31,6 +33,27 @@ int Callback(EpollPendingEvent *event, void *userp) {
 
 
 int main(int argc, char **argv) {
+
+	string sTr("喵喵喵。我的内心毫无波动，甚至还想笑，蛤蛤蛤蛤蛤蛤蛤蛤蛤");
+	sTr.push_back(0);
+
+	string hexstr = Convert::ToHexString(sTr);
+
+	cout << hexstr << endl;
+
+	string hexorigstr = Convert::FromHexString(hexstr);
+
+	cout << hexorigstr << endl;
+
+	string b64str = Convert::ToBase64String(sTr);
+
+	cout << b64str << endl;
+
+	string b64origstr = Convert::FromBase64String(b64str);
+
+	cout << b64origstr << endl;
+
+	exit(0);
 
 	Epoll epollctx(128);
 

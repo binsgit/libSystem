@@ -13,6 +13,7 @@
 #include <cinttypes>
 
 #include <string>
+#include <vector>
 #include <iostream>
 #include <stdexcept>
 #include <exception>

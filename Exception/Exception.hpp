@@ -2,8 +2,8 @@
 // Created by root on 17-8-21.
 //
 
-#ifndef libReimu_SystemException_H
-#define libReimu_SystemException_H
+#ifndef libReimu_System_Exception_H
+#define libReimu_System_Exception_H
 
 #include "../System.hpp"
 
@@ -29,4 +29,4 @@ namespace Reimu {
 
 
 
-#endif // libReimu_SystemException_H
+#endif // libReimu_System_Exception_H

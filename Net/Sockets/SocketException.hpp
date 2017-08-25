@@ -5,8 +5,8 @@
 #ifndef LIBSYSTEM_SOCKETEXCEPTION_HPP
 #define LIBSYSTEM_SOCKETEXCEPTION_HPP
 
-#include "../System.hpp"
-#include "PosixException.hpp"
+#include "../../System.hpp"
+#include "../../Exception/PosixException.hpp"
 
 namespace Reimu {
     namespace System {

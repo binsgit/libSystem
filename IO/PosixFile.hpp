@@ -10,12 +10,27 @@
 namespace Reimu {
     namespace System {
 	namespace IO {
-	    class FileDescriptor {
+	    class PosixFile {
 	    public:
-		int FileDescriptor = ;
-		
-		FileDescriptor() {}
-		FileDescriptor(int fd) {}
+		int FileDescriptor = -1;
+
+		PosixFile() {}
+		PosixFile(int fd) { FileDescriptor = fd; }
+
+		void Open(const char *pathname, int flags) {
+			FileDescriptor = open(pathname, flags);
+		}
+		void Open(const char *pathname, int flags, mode_t mode) {
+			FileDescriptor = open(pathname, flags, mode);
+
+			if (FileDescriptor == -1)
+				throw
+		}
+
+		ssize_t Read(void *buf, size_t count) {
+			return read(FileDescriptor, buf, count);
+		}
+
 	    };
 	}
     }

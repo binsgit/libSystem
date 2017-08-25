@@ -7,6 +7,6 @@
 
 #include "ArgumentNullException.hpp"
 #include "OutOfMemoryException.hpp"
-#include "SocketException.hpp"
+#include "../Net/Sockets/SocketException.hpp"
 
 #endif // libReimu_SystemException_Inc

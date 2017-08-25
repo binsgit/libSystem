@@ -8,7 +8,7 @@
 #include "Net.hpp"
 #include "IPAddress.hpp"
 #include "EndPoint.hpp"
-#include "../Exception/SocketException.hpp"
+#include "Sockets/SocketException.hpp"
 #include "Sockets/Socket.hpp"
 
 using Reimu::System::SocketException;

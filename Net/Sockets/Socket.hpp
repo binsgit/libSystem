@@ -8,7 +8,8 @@
 #include "../Net.hpp"
 #include "AddressFamily.hpp"
 #include "../IPEndPoint.hpp"
-#include "../../Exception/SocketException.hpp"
+#include "../../IO/PosixFile.hpp"
+#include "SocketException.hpp"
 
 extern socklen_t sockopt_err_len;
 
@@ -16,9 +17,8 @@ namespace Reimu {
     namespace System {
 	namespace Net {
 	    namespace Sockets {
-		class Socket {
+		class Socket : public IO::PosixFile {
 		public:
-		    int FileDescriptor = -1;
 		    Sockets::AddressFamily AddressFamily;
 		    bool Connected = 0;
 		    bool Blocking = 1;

@@ -1,4 +1,4 @@
-# libSystem ![build_status](https://api.travis-ci.org/CloudyReimu/libSystem.svg?branch=master)
+# libSystem [![Build Status](https://travis-ci.org/CloudyReimu/libSystem.svg?branch=master)](https://travis-ci.org/CloudyReimu/libSystem)
 .NET clone in C++ 
 
 ## Description

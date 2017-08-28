@@ -34,7 +34,7 @@ int Callback(EpollPendingEvent *event, void *userp) {
 
 int main(int argc, char **argv) {
 
-	string sTr("喵喵喵。我的内心毫无波动，甚至还想笑，蛤蛤蛤蛤蛤蛤蛤蛤蛤");
+	string sTr("喵喵喵。我的内心毫无波动，甚至还想笑，蛤蛤蛤蛤蛤蛤蛤蛤蛤\x00");
 	sTr.push_back(0);
 
 	string hexstr = Convert::ToHexString(sTr);
@@ -53,7 +53,6 @@ int main(int argc, char **argv) {
 
 	cout << b64origstr << endl;
 
-	exit(0);
 
 	Epoll epollctx(128);
 

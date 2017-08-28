@@ -1,5 +1,5 @@
-# libSystem
-.NET clone in C++
+# libSystem ![build_status](https://api.travis-ci.org/CloudyReimu/libSystem.svg?branch=master)
+.NET clone in C++ 
 
 ## Description
 This library is intended for improving my development efficiency, since dealing with libc and kernel internals every day is a boring&tough work.  
